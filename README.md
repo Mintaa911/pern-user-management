@@ -61,10 +61,29 @@ This is a full-stack application built with the PERN stack (PostgreSQL, Express,
 ## Features
 
 - Create new users with first name, last name, email, phone, and password
-- View list of all users
+- View list of all users with pagination (3 users per page)
+- Navigate through users with Previous/Next buttons
 - Delete users
 - Responsive design
 - Password hashing for security
+- User-friendly pagination controls with page indicators
+
+## Frontend Features
+
+### User Management
+- Clean, modern UI for user registration
+- Responsive table display for user list
+- Pagination system showing 3 users per page
+- Navigation controls with Previous/Next buttons
+- Current page indicator
+- Disabled state for navigation buttons when at first/last page
+
+### Styling
+- Modern, clean interface
+- Responsive design that works on all screen sizes
+- Interactive buttons with hover effects
+- Clear visual feedback for user actions
+- Consistent color scheme throughout the application
 
 ## API Endpoints
 
