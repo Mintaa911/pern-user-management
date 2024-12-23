@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function App() {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ function App() {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users');
+      const response = await axios.get(`${API_URL}/api/users`);
       setUsers(response.data);
     } catch (err) {
       console.error(err.message);
@@ -36,7 +38,7 @@ function App() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/users', formData);
+      await axios.post(`${API_URL}/api/users`, formData);
       setFormData({
         first_name: '',
         last_name: '',
@@ -52,7 +54,7 @@ function App() {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
+      await axios.delete(`${API_URL}/api/users/${id}`);
       setUsers(users.filter(user => user.user_id !== id));
     } catch (err) {
       console.error(err.message);
