@@ -362,4 +362,78 @@ Includes necessary meta tags
 Sets the page title
 The files have been committed and pushed to the repository. Now the React application has all the necessary entry point files to run properly. You can start the client application using npm start in the client directory.
 
+## Prompt 9
+
+I want to create database on server if not database exist
+
+## Response 9
+
+I'll modify the server's database connection to create the database if it doesn't exist. We'll need to create a new file for database initialization:
+
+Created
+initDb.js
+
+Now, let's update the server's index.js to use this initialization:
+
+Edited
+index.js
+
+Let's commit these changes:
+
+Ran terminal command
+c:/Users/omen/Desktop/Repo/prompt-engineering
+> git add .
+
+Ran terminal command
+> git commit -m feat: Add automatic database initialization
+
+- Added initDb.js to handle database creation
+- Database and tables are created automatically if they don't exist
+- Updated server to initialize database on startup
+
+Ran terminal command
+> git push
+
+Stdout
+CopyInsert
+To https://github.com/Mintaa911/pern-user-management.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/Mintaa911/pern-user-management.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+Exit Code 1
+
+Ran terminal command
+> git pull
+
+Ran terminal command
+> git push
+
+I've added automatic database initialization with these changes:
+
+Created server/initDb.js that:
+Connects to the default PostgreSQL database
+Checks if our application database exists
+Creates the database if it doesn't exist
+Creates the users table if it doesn't exist
+Handles all necessary error cases
+Updated server/index.js to:
+Import the database initialization function
+Run the initialization before starting the server
+Handle any initialization errors
+Now when you start the server:
+
+It will automatically create the database if it doesn't exist
+Create the users table if it doesn't exist
+Handle any connection or creation errors gracefully
+You no longer need to manually create the database or run the SQL commands. Just make sure your PostgreSQL server is running and the credentials in your .env file are correct.
+
+Would you like me to:
+
+Add more error handling or logging?
+Add additional database initialization features?
+Make any other changes to the database setup?
 
