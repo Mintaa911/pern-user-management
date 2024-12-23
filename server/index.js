@@ -2,12 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const pool = require('./db');
+const initializeDatabase = require('./initDb');
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Initialize database before starting the server
+initializeDatabase().then(() => {
+    console.log('Database initialized successfully');
+}).catch(err => {
+    console.error('Failed to initialize database:', err);
+    process.exit(1);
+});
 
 // Routes
 
