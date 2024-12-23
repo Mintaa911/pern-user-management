@@ -11,6 +11,8 @@ function App() {
     phone: '',
     password: ''
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 3;
 
   const { first_name, last_name, email, phone, password } = formData;
 
@@ -121,7 +123,9 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {users
+              .slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage)
+              .map(user => (
               <tr key={user.user_id}>
                 <td>{user.first_name}</td>
                 <td>{user.last_name}</td>
@@ -134,6 +138,22 @@ function App() {
             ))}
           </tbody>
         </table>
+        
+        <div className="pagination">
+          <button 
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span>Page {currentPage} of {Math.ceil(users.length / usersPerPage)}</span>
+          <button 
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(users.length / usersPerPage)))}
+            disabled={currentPage >= Math.ceil(users.length / usersPerPage)}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
